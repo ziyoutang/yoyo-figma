@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.env.local
+.firebase/
+*-debug.log
+*.tsbuildinfo
+.design/
+functions/lib/
+functions/.env.local
+functions/.secret.local
+
+# Local credentials and environment overrides
+.env.local
+.env.*.local
+functions/.env
+functions/.env.*
+functions/.secret*
+*.pem
+*.p12
+service-account*.json
+serviceAccount*.json

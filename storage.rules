@@ -1,0 +1,29 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isOwner(uid) {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.firebase.sign_in_provider == 'google.com'
+        && request.auth.uid == uid;
+    }
+    // Reference images for image-to-3D. No client update or delete.
+    match /uploads/{uid}/{file} {
+      allow read: if isOwner(uid);
+      allow create: if isOwner(uid)
+        && request.resource.size < 20 * 1024 * 1024
+        && request.resource.contentType in ['image/jpeg', 'image/png', 'image/webp'];
+    }
+    // Generated models; only functions write here.
+    match /models/{uid}/{jobId}/{file} {
+      allow read: if isOwner(uid);
+    }
+    // Published heroes: anyone can get a file by its exact path, nobody can list them, and only functions write.
+    match /public/heroes/{heroId}/{allPaths=**} {
+      allow get: if true;
+    }
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

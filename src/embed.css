@@ -1,0 +1,10 @@
+/* The embed page: the hero alone. In a frame sized by the embed code it fills the frame; opened in a tab it is letterboxed. */
+:root,html,body,#root{margin:0;width:100%;height:100%;overflow:hidden;background:transparent}
+.embed{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.embed .preview-wrap{flex:none;width:min(100vw,calc(100vh*722/419));border:0;border-radius:0;box-shadow:none}
+.embed .mobile-frame{max-width:none;margin:0;width:min(100vw,calc(100vh*350/490))}
+.embed-unavailable{display:flex;align-items:center;justify-content:center;height:100%;margin:0;padding:16px;text-align:center;font-size:15px;color:#00676c}
+/* Poster first: the canvas fades in over it once the model has drawn. */
+.hero-poster{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-canvas{transition:opacity .3s}
+.hero-canvas.waiting{opacity:0}

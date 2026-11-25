@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Depth</title>
+<style>
+  /* Figma's theme colours (themeColors: true), with light fallbacks. */
+  :root { color-scheme: light dark; --text: var(--figma-color-text, #1e1e1e); --muted: var(--figma-color-text-secondary, #6b6b6b); --bg: var(--figma-color-bg, #fff);
+    --border: var(--figma-color-border, #e6e6e6); --brand: var(--figma-color-bg-brand, #0d99ff); --on-brand: var(--figma-color-text-onbrand, #fff); --danger: var(--figma-color-text-danger, #dc3412); }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 12px/1.45 Inter, system-ui, sans-serif; color: var(--text); background: var(--bg); }
+  main { display: flex; flex-direction: column; gap: 12px; padding: 16px; }
+  h1 { margin: 0; font-size: 14px; }
+  p { margin: 0; }
+  label, legend { font-weight: 600; }
+  textarea, input[type=text] { width: 100%; margin-top: 4px; padding: 8px; border: 1px solid var(--border); border-radius: 6px; font: 11px/1.4 ui-monospace, monospace; color: var(--text); background: var(--bg); resize: none; }
+  fieldset { margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 4px; }
+  fieldset label { font-weight: 400; display: flex; gap: 6px; align-items: center; }
+  button { padding: 8px 12px; border: 0; border-radius: 6px; font: 600 12px Inter, system-ui, sans-serif; color: var(--on-brand); background: var(--brand); cursor: pointer; }
+  button:disabled { opacity: .4; cursor: default; }
+  button.quiet { color: var(--text); background: transparent; border: 1px solid var(--border); }
+  .hint { color: var(--muted); }
+  .error { color: var(--danger); }
+  ul { margin: 0; padding-left: 16px; color: var(--muted); }
+  .row { display: flex; gap: 6px; align-items: flex-end; }
+  .row > label { flex: 1; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Depth</h1>
+  <p class="hint">On Depth’s Complete screen, click Send to Figma, then paste the hero’s link here.</p>
+  <label>Hero link or embed code<textarea id="link" rows="3" spellcheck="false" placeholder="https://depth-plugin-demo-20261006.web.app/embed/…"></textarea></label>
+  <fieldset>
+    <legend>Place as</legend>
+    <label><input type="radio" name="placement" value="New Frame" checked>New Frame</label>
+    <label><input type="radio" name="placement" value="Replace Selection">Replace Selection</label>
+  </fieldset>
+  <p id="reason" class="hint" hidden></p>
+  <button id="place" type="button">Place</button>
+  <p id="status" role="status"></p>
+  <ul id="notes" hidden></ul>
+  <div id="live" class="row" hidden>
+    <label>Live hero<input id="live-link" type="text" readonly></label>
+    <button id="copy" class="quiet" type="button">Copy</button>
+  </div>
+</main>
+<!-- ui.js -->
+</body>
+</html>

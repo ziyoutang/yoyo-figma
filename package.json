@@ -1,0 +1,47 @@
+{
+  "name": "depth-demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "check:build": "node scripts/check-build.mjs",
+    "build:plugin": "tsc -p figma-plugin && tsc -p figma-plugin/tsconfig.ui.json && node figma-plugin/build.mjs && node scripts/check-build.mjs --plugin",
+    "watch:plugin": "node figma-plugin/build.mjs --watch",
+    "build:deploy": "npm run deploy",
+    "deploy:all": "npm run deploy",
+    "deploy:hosting": "npm test && npm run build && npm run check:build && firebase deploy --only hosting --project depth-plugin-demo-20261006",
+    "deploy:rules": "firebase deploy --only firestore:rules,storage --project depth-plugin-demo-20261006",
+    "deploy:functions": "node scripts/deploy-functions.mjs",
+    "deploy:functions:all": "node scripts/deploy-functions.mjs --all",
+    "deploy": "npm test && npm run build && npm run check:build && firebase deploy --project depth-plugin-demo-20261006"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "firebase": "^12.0.0",
+    "html-to-image": "1.11.13",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.0",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.142.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@types/three": "^0.187.0",
+    "@vitejs/plugin-react": "^4.5.0",
+    "esbuild": "^0.25.12",
+    "jsdom": "^26.1.0",
+    "shadcn": "^4.21.3",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.0",
+    "vitest": "^3.2.0"
+  }
+}
